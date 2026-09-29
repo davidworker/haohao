@@ -189,6 +189,10 @@ const app = createApp({
             })
         }
 
+        /**
+         * 發送表單資料到 Google Apps Script
+         * @param {*} payload
+         */
         const submitGAS = async (payload) => {
             try {
                 payload.requestId = newRequestId()
