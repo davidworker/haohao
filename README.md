@@ -5,3 +5,7 @@
 ## 技術棧
 
 - Vue3 Composition
+
+## B 電腦訊息
+
+大家好我是B電腦
