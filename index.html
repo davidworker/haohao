@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>好好運作｜HTML CSS 切版練習</title>
+        <link href="./assets/favicon.svg" rel="icon" />
+        <link href="style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <input type="checkbox" id="toggle-nav" class="toggle-nav-input" :checked="mobileMenuOpen" />
+            <header class="site-header">
+                <div class="wrap nav">
+                    <a aria-label="好好運作，回到頁首" class="brand" href="#">
+                        <img src="./assets/好好運作-橫式-正色.svg" alt="好好運作" />
+                    </a>
+                    <nav aria-label="主要導覽">
+                        <a href="#services" @click="toggleMobileMenu"> 服務項目 </a>
+                        <a href="#partners" @click="toggleMobileMenu"> 合作夥伴 </a>
+                        <a href="#about" @click="toggleMobileMenu"> 關於好好運作 </a>
+                        <a class="button solid" href="#contact" @click="toggleMobileMenu"> 聊聊網站狀況 ↗ </a>
+                    </nav>
+                </div>
+                <div class="toggle-nav">
+                    <label aria-label="開啟導覽選單" for="toggle-nav" @click.prevent="toggleMobileMenu">
+                        <span aria-hidden="true"> ☰ </span>
+                    </label>
+                </div>
+            </header>
+            <!-- 在這裡加入 header -->
+            <main id="main">
+                <section class="wrap hero section split" id="hero">
+                    <div>
+                        <div class="eyebrow">網站接管・改版・客製系統開發</div>
+                        <h1>
+                            讓網站與生意，
+                            <br />
+                            <em> 好好運作。 </em>
+                        </h1>
+                        <p class="lead">
+                            網站還在，卻沒有人能接手？
+                            <br />
+                            從舊網站接管、改版，到會員、訂單與客製後台開發，先看清楚問題，再決定怎麼改。
+                        </p>
+                        <div class="actions">
+                            <a class="button solid" href="#contact">
+                                聊聊網站狀況
+                                <span aria-hidden="true"> ↗ </span>
+                            </a>
+                            <a class="button" href="#process"> 看看怎麼合作 </a>
+                        </div>
+                        <p class="hero-note">由老夫科技提供服務，讓每一次交接都有下一步。</p>
+                    </div>
+                    <figure class="scene hero-scene">
+                        <img alt="戴花紋毛帽的品牌人物坐在電腦旁，伸手邀請你聊聊網站狀況" src="./assets/插畫-先聊聊.png" />
+                        <figcaption>網站的事，坐下來慢慢說。</figcaption>
+                    </figure>
+                </section>
+                <section class="wrap story-pain section" id="pain">
+                    <div class="heading">
+                        <div>
+                            <span class="kicker">從你的困擾開始</span>
+                            <h2>
+                                有些卡住，
+                                <br />
+                                不該變成日常。
+                            </h2>
+                        </div>
+                        <p>
+                            不用先懂技術，也不用先決定整站重做。
+                            <br />
+                            先說說，現在最影響工作的是什麼。
+                        </p>
+                    </div>
+                    <div class="pain-editorial split">
+                        <figure class="scene">
+                            <img src="./assets/插畫-釐清卡點.png" alt="品牌人物檢查纏在一起的線材，桌上放著電腦與待處理文件" />
+                            <figcaption>先找到線頭，才知道從哪裡開始。</figcaption>
+                        </figure>
+                        <div class="pain">
+                            <template v-for="(pain, painIndex) in pains" :key="painIndex">
+                                <article class="item">
+                                    <span class="number"> {{ prefixNumber(painIndex + 1) }} / {{ pain.subtitle }} </span>
+                                    <div class="item-copy">
+                                        <h3>{{ pain.title }}</h3>
+                                        <p>{{ pain.description }}</p>
+                                    </div>
+                                </article>
+                            </template>
+                        </div>
+                    </div>
+                </section>
+                <section class="wrap section story-services" id="services">
+                    <div class="heading">
+                        <div>
+                            <span class="kicker">我們可以怎麼協助</span>
+                            <h2>
+                                接得下來，
+                                <br />
+                                也能往前。
+                            </h2>
+                        </div>
+                        <p></p>
+                    </div>
+                    <div class="services-editorial split">
+                        <figure class="scene">
+                            <img src="./assets/插畫-接起功能.png" alt="品牌人物將三片網站功能拼圖接起來" />
+                            <figcaption>把需要的功能，一步步接起來。</figcaption>
+                        </figure>
+                        <div class="services-list">
+                            <template v-for="(service, serviceIndex) in services" :key="serviceIndex">
+                                <article class="item">
+                                    <span class="number"> {{ prefixNumber(serviceIndex + 1) }} </span>
+                                    <div class="item-copy">
+                                        <h3>{{ service.title }}</h3>
+                                        <p>{{ service.content }}</p>
+                                        <a :href="service.link_url"> {{ service.link_content }} </a>
+                                    </div>
+                                </article>
+                            </template>
+                        </div>
+                    </div>
+                </section>
+                <section class="wrap story-process section" id="process">
+                    <div class="heading">
+                        <div>
+                            <span class="kicker">合作方式</span>
+                            <h2>先說清楚，再好好完成。</h2>
+                        </div>
+                        <p></p>
+                    </div>
+                    <div class="process-editorial split">
+                        <figure class="scene">
+                            <img src="./assets/插畫-合作方式.png" alt="品牌人物寫字，表示合作方式" />
+                            <figcaption>每一步，都先說清楚。</figcaption>
+                        </figure>
+                        <div class="process-list">
+                            <template v-for="(process, processIndex) in processes" :key="processIndex">
+                                <article class="item">
+                                    <span class="number"> {{ prefixNumber(processIndex + 1) }} </span>
+                                    <div class="item-copy">
+                                        <h3>{{ process.title }}</h3>
+                                        <p>{{ process.content }}</p>
+                                    </div>
+                                </article>
+                            </template>
+                        </div>
+                    </div>
+                </section>
+                <section class="wrap about section" id="about">
+                    <div class="promise about-panel">
+                        <div>
+                            <span class="kicker"> 關於好好運作 </span>
+                            <h2 id="about-title">
+                                技術有人處理，
+                                <br />
+                                事情有人交代。
+                            </h2>
+                            <p>好好運作是老夫科技旗下的網站與系統服務。由實際承接者直接溝通，負責開發、審查與驗證。</p>
+                            <div class="person-sign">
+                                <img alt="" src="./assets/品牌人物原圖.png" />
+                                <span>
+                                    先理解問題，再一起往前。
+                                    <small> 好好運作 × 老夫科技 </small>
+                                </span>
+                            </div>
+                        </div>
+                        <ul>
+                            <template v-for="(about, aboutIndex) in abouts" :key="aboutIndex">
+                                <li class="item">
+                                    <span aria-hidden="true" class="number"> {{ prefixNumber(aboutIndex + 1) }} </span>
+                                    <div class="item-copy">
+                                        <h3>{{ about.title }}</h3>
+                                        <p>{{ about.content }}</p>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </section>
+                <section class="wrap partners section" id="partners">
+                    <div class="heading">
+                        <div>
+                            <span class="kicker">一起把專案接起來</span>
+                            <h2>你的專業，多一份技術協作。</h2>
+                        </div>
+                        <p></p>
+                    </div>
+                    <div class="partners-editorial split">
+                        <div class="partners-list">
+                            <template v-for="(partner, partnerIndex) in partners" :key="partnerIndex">
+                                <article class="item">
+                                    <div>
+                                        <span class="kicker">{{ partner.subtitle }}</span>
+                                        <h3>{{ partner.title }}</h3>
+                                        <p>{{ partner.content }}</p>
+                                        <a :href="partner.link_url"> {{ partner.link_content }} </a>
+                                    </div>
+                                </article>
+                            </template>
+                        </div>
+                        <figure class="scene">
+                            <img src="./assets/插畫-夥伴協作.png" alt="品牌人物與其他品牌人物一起工作" />
+                            <figcaption>把各自的專業，接成一個完整的專案。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                <section class="wrap faq section" id="faq">
+                    <div class="faq-editorial split">
+                        <div>
+                            <div>
+                                <span class="kicker">先回答幾個問題</span>
+                                <h2>你可能還想知道。</h2>
+                            </div>
+                            <figure class="scene">
+                                <img src="./assets/插畫-常見問題.png" alt="品牌人物打開書本，表示常見問題" />
+                                <figcaption>先把疑問說開，再安心往前。</figcaption>
+                            </figure>
+                        </div>
+                        <div class="services-list">
+                            <template v-for="(faq, faqIndex) in faqs" :key="faqIndex">
+                                <article class="item">
+                                    <span class="number"> {{ prefixNumber(faqIndex + 1) }} </span>
+                                    <div class="item-copy">
+                                        <h3>{{ faq.title }}</h3>
+                                        <p>{{ faq.content }}</p>
+                                    </div>
+                                </article>
+                            </template>
+                        </div>
+                    </div>
+                </section>
+                <section class="wrap contact section" id="contact">
+                    <div class="contact-editorial split">
+                        <div>
+                            <div class="contact-content">
+                                <span class="kicker">從一個問題，開始討論</span>
+                                <h2>
+                                    現在最想解決
+                                    <br />
+                                    哪件事？
+                                </h2>
+                                <p>不用先寫完整規格。說說你的網站、遇到的問題，或想完成的下一步。</p>
+                                <small>初步討論不需提供密碼、正式環境憑證或會員個資。</small>
+                            </div>
+                            <figure class="scene">
+                                <img src="./assets/插畫-開始討論.png" alt="品牌人物在圓桌旁傾聽，對面留著空椅與一杯咖啡" />
+                                <figcaption>留個位置，聊聊你的下一步。</figcaption>
+                            </figure>
+                        </div>
+                        <div class="contact-form">
+                            <h3>留下聯絡方式與需求</h3>
+                            <small>標示 * 的欄位為必填。</small>
+                            <form action="">
+                                <div class="field">
+                                    <label for="name">怎麼稱呼你 *</label>
+                                    <input type="text" id="name" name="name" required v-model="form.name" />
+                                </div>
+                                <div class="field">
+                                    <label for="contact-type">聯絡方式 *</label>
+                                    <select id="contact-type" name="contact-type" required v-model="form.contact_type">
+                                        <template v-for="(type, typeIndex) in formContactTypeOptions" :key="typeIndex">
+                                            <option :value="type.value">{{ type.label }}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <div class="field" v-show="form.contact_type === 'email'">
+                                    <label for="email">你的 Email *</label>
+                                    <input type="email" id="email" name="email" required v-model="form.email" />
+                                </div>
+                                <div class="field" v-show="form.contact_type === 'phone'">
+                                    <label for="phone">你的電話 *</label>
+                                    <input type="tel" id="phone" name="phone" required v-model="form.phone" />
+                                </div>
+                                <div class="field" v-show="form.contact_type === 'line'">
+                                    <label for="line">你的 Line *</label>
+                                    <input type="text" id="line" name="line" required v-model="form.line" />
+                                </div>
+                                <div class="field">
+                                    <label for="discuss-type">想討論的需求 *</label>
+                                    <select name="discuss-type" id="discuss-type" required v-model="form.service">
+                                        <template v-for="(service, serviceIndex) in formServiceOptions" :key="serviceIndex">
+                                            <option :value="service.value">{{ service.label }}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="message">說說目前的狀況 *</label>
+                                    <textarea name="message" id="message" required v-model="form.message"></textarea>
+                                </div>
+                                <div class="field checkbox">
+                                    <input type="checkbox" id="privacy-policy" name="privacy-policy" required v-model="form.consent" />
+                                    <label for="privacy-policy">我已閱讀隱私說明，同意為回覆與評估本次需求使用所填資料。*</label>
+                                </div>
+                                <input type="hidden" name="website" v-model="form.website" />
+                                <button type="submit" class="button" :disabled="!canSubmitContact" @click.prevent="submitContact">
+                                    <span v-show="!formSending">送出詢問 ↗</span>
+                                    <span v-show="formSending">送出中...</span>
+                                </button>
+                            </form>
+                            <small>送出後，我們會依你提供的聯絡方式與你聯繫。</small>
+                            <small>資料僅用於回覆與評估本次需求。未成交詢問保存至最後聯繫後 6 個月。</small>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <section class="wrap stats section" id="stats">
+                <div class="heading">
+                    <div>
+                        <span class="kicker">詢問統計</span>
+                        <h2>每一份詢問，都看得清楚。</h2>
+                    </div>
+                    <p>近 7 天的彙總數字。這裡只呈現分類與數量，不顯示個別聯絡資料。</p>
+                </div>
+                <p class="stats-status" role="status" v-show="statsLoading">統計載入中，請稍候。</p>
+                <p class="stats-status" role="status" v-show="statsError">{{ statsError }}</p>
+                <div v-if="stats">
+                    <p class="stats-meta">{{ stats.start }} — {{ stats.end }} · {{ stats.timeZone }}</p>
+                    <div class="stats-metrics" aria-label="詢問摘要">
+                        <article>
+                            <h3>期間詢問</h3>
+                            <strong>{{ stats.total }}</strong>
+                            <span>筆詢問</span>
+                        </article>
+                        <article>
+                            <h3>今日詢問</h3>
+                            <strong>{{ stats.today }}</strong>
+                            <span>台北時間</span>
+                        </article>
+                        <article>
+                            <h3>期間待處理</h3>
+                            <strong>{{ stats.pending }}</strong>
+                            <span>依目前處理狀態</span>
+                        </article>
+                    </div>
+                    <p class="stats-status" v-if="stats.total === 0">這段期間沒有詢問資料。</p>
+                    <div class="stats-charts">
+                        <article class="stats-chart stats-chart-wide">
+                            <h3>每日詢問量</h3>
+                            <div class="stats-canvas">
+                                <canvas ref="dailyChartCanvas" aria-label="每日詢問量長條圖"></canvas>
+                            </div>
+                        </article>
+                        <article class="stats-chart">
+                            <h3>需求類型</h3>
+                            <div class="stats-canvas stats-canvas-round">
+                                <canvas ref="serviceChartCanvas" aria-label="需求類型圓餅圖"></canvas>
+                            </div>
+                        </article>
+                        <article class="stats-chart">
+                            <h3>聯絡方式</h3>
+                            <div class="stats-canvas stats-canvas-round">
+                                <canvas ref="contactChartCanvas" aria-label="聯絡方式圓餅圖"></canvas>
+                            </div>
+                        </article>
+                        <article class="stats-chart">
+                            <h3>處理狀態</h3>
+                            <div class="stats-canvas stats-canvas-round">
+                                <canvas ref="statusChartCanvas" aria-label="處理狀態圓餅圖"></canvas>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <!-- 在這裡加入 footer -->
+            <footer class="site-footer">
+                <section class="wrap footer" id="footer">
+                    <div class="footer-logo">
+                        <div>
+                            <a aria-label="好好運作，回到頁首" class="brand" href="#">
+                                <img src="./assets/好好運作-橫式-正色.svg" alt="好好運作" />
+                            </a>
+                        </div>
+                        <div>
+                            好好運作是老夫科技旗下的網站與系統服務。
+                            <br />
+                            讓網站與生意，好好運作。
+                        </div>
+                    </div>
+                    <div class="footer-copyright">
+                        <div>好好運作 × 老夫科技 · 2026</div>
+                        <div class="links">
+                            <a href="#">隱私說明</a>
+                            <a href="#">回到頁首 ↑</a>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+        </div>
+    </body>
+    <script src="./assets/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="app.js"></script>
+</html>

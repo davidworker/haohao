@@ -1,0 +1,20 @@
+[
+    {
+        "title": "網站接管",
+        "content": "盤點程式、主機與資料，釐清接手條件，再評估既有問題與後續維護。",
+        "link_content": "了解網站接管服務 ↗",
+        "link_url": "#contact"
+    },
+    {
+        "title": "舊站改版",
+        "content": "從使用體驗、內容到後台流程，評估局部改善或分階段重建。",
+        "link_content": "了解網站改版服務 ↗",
+        "link_url": "#contact"
+    },
+    {
+        "title": "客製系統開發",
+        "content": "整理會員、訂單、金流與後台需求，將想法拆成可執行的功能階段。",
+        "link_content": "了解客製開發服務 ↗",
+        "link_url": "#contact"
+    }
+]
